@@ -1,0 +1,19 @@
+# This file contains recursive sources that require this package
+Remmina
+SDL2_mixer
+cmus
+gnome-boxes
+gst-plugins-bad
+gst-plugins-base
+jack2
+opus-dev
+opusfile
+opusfile-dev
+qt6base
+qtwebengine
+sox
+spice-gtk
+spice-gtk-dev
+vinagre
+virt-viewer
+vlc

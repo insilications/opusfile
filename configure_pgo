@@ -1,0 +1,5 @@
+--enable-shared
+--enable-static
+--disable-fuzzing
+--disable-assertions
+--enable-fixed-point
