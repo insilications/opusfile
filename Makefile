@@ -1,5 +1,5 @@
 PKG_NAME := opusfile
-URL = https://gitlab.xiph.org/xiph/opusfile.git
+URL = /insilications/build/git-clr/opusfile-clr/
 ARCHIVES = 
 ARCHIVES_GIT = 
 

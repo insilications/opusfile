@@ -1,5 +1,5 @@
---enable-shared
+--disable-shared
 --enable-static
+--enable-float
 --disable-fuzzing
 --disable-assertions
---enable-fixed-point

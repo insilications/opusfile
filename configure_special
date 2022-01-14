@@ -1,13 +1,5 @@
 --enable-shared
 --disable-static
---enable-intrinsics
---enable-float-approx
---enable-doc
---enable-check-asm
---enable-asm
---disable-maintainer-mode
---disable-hardening
---enable-custom-modes
---disable-stack-protector
+--enable-float
 --disable-fuzzing
 --disable-assertions
