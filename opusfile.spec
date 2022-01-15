@@ -5,13 +5,12 @@
 %define keepstatic 1
 Name     : opusfile
 Version  : 0.12
-Release  : 516
+Release  : 517
 URL      : file:///aot/build/clearlinux/packages/opusfile/opusfile-v0.12.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/opusfile/opusfile-v0.12.tar.gz
 Summary  : High-level Opus decoding library
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: opusfile-lib = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : doxygen
 BuildRequires : findutils
@@ -19,6 +18,9 @@ BuildRequires : graphviz
 BuildRequires : nasm-bin
 BuildRequires : opus-dev
 BuildRequires : opus-staticdev
+BuildRequires : pkgconfig(ogg)
+BuildRequires : pkgconfig(openssl)
+BuildRequires : pkgconfig(opus)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -28,42 +30,6 @@ BuildRequires : opus-staticdev
 [![GitLab Pipeline Status](https://gitlab.xiph.org/xiph/opusfile/badges/master/pipeline.svg)](https://gitlab.xiph.org/xiph/opusfile/commits/master)
 [![Travis Build Status](https://travis-ci.org/xiph/opusfile.svg?branch=master)](https://travis-ci.org/xiph/opusfile)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/xiph/opusfile?branch=master&svg=true)](https://ci.appveyor.com/project/rillian/opusfile)
-
-%package dev
-Summary: dev components for the opusfile package.
-Group: Development
-Requires: opusfile-lib = %{version}-%{release}
-Provides: opusfile-devel = %{version}-%{release}
-Requires: opusfile = %{version}-%{release}
-
-%description dev
-dev components for the opusfile package.
-
-
-%package doc
-Summary: doc components for the opusfile package.
-Group: Documentation
-
-%description doc
-doc components for the opusfile package.
-
-
-%package lib
-Summary: lib components for the opusfile package.
-Group: Libraries
-
-%description lib
-lib components for the opusfile package.
-
-
-%package staticdev
-Summary: staticdev components for the opusfile package.
-Group: Default
-Requires: opusfile-dev = %{version}-%{release}
-
-%description staticdev
-staticdev components for the opusfile package.
-
 
 %prep
 %setup -q -n opusfile-clr
@@ -78,7 +44,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642160612
+export SOURCE_DATE_EPOCH=1642201804
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -371,7 +337,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1642160612
+export SOURCE_DATE_EPOCH=1642201804
 rm -rf %{buildroot}
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -586,35 +552,3 @@ cp --archive %{buildroot}/usr/lib64/lib*.so* %{buildroot}/usr/lib64/haswell/ || 
 
 %files
 %defattr(-,root,root,-)
-
-%files dev
-%defattr(-,root,root,-)
-/usr/include/opus/opusfile.h
-/usr/lib64/haswell/libopusfile.so
-/usr/lib64/haswell/libopusurl.so
-/usr/lib64/libopusfile.la
-/usr/lib64/libopusfile.so
-/usr/lib64/libopusurl.la
-/usr/lib64/libopusurl.so
-/usr/lib64/pkgconfig/opusfile.pc
-/usr/lib64/pkgconfig/opusurl.pc
-
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/opusfile/*
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/haswell/libopusfile.so.0
-/usr/lib64/haswell/libopusfile.so.0.4.5
-/usr/lib64/haswell/libopusurl.so.0
-/usr/lib64/haswell/libopusurl.so.0.4.5
-/usr/lib64/libopusfile.so.0
-/usr/lib64/libopusfile.so.0.4.5
-/usr/lib64/libopusurl.so.0
-/usr/lib64/libopusurl.so.0.4.5
-
-%files staticdev
-%defattr(-,root,root,-)
-/usr/lib64/libopusfile.a
-/usr/lib64/libopusurl.a
